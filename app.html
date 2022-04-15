@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="./CSS/app.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="top">
+        <div class="back"><</div>
+        <div class="iconfont map">&#xe61f;</div>
+        <div class="cityName">重庆</div>
+      </div>
+      <div class="middle">
+        <div class="mFirst" style="display: block;">
+          <div class="inputBox">
+            <input
+              type="text"
+              placeholder="请输入你想输入的城市"
+              style="font-size: 16px"
+            />
+            <i class="iconfont search">&#xe62f;</i>
+            </svg>
+          </div>
+          <div class="searchHistoryBox" style="display: none;">
+            <div class="history"></div>
+          </div>
+        </div>
+        <div class="mSecond" style="display: none">
+          <div class="hang">
+            <div class="time"></div>
+            <div class="fengxiang"></div>
+            <div class="qiwen"></div>
+          </div>
+          <div class="hang">
+            <div class="time"></div>
+            <div class="fengxiang"></div>
+            <div class="qiwen"></div>
+          </div>
+          <div class="hang">
+            <div class="time"></div>
+            <div class="fengxiang"></div>
+            <div class="qiwen"></div>
+          </div>
+          <div class="hang">
+            <div class="time"></div>
+            <div class="fengxiang"></div>
+            <div class="qiwen"></div>
+          </div>
+          <div class="hang">
+            <div class="time"></div>
+            <div class="fengxiang"></div>
+            <div class="qiwen"></div>
+          </div>
+          <div class="hang">
+            <div class="time"></div>
+            <div class="fengxiang"></div>
+            <div class="qiwen"></div>
+          </div>
+          <div class="hang">
+            <div class="time"></div>
+            <div class="fengxiang"></div>
+            <div class="qiwen"></div>
+          </div>
+        </div>
+        <div class="mThird" style="display: none">
+          <div class="temperature"></div>
+          <div class="cloud"></div>
+          <div class="wind"></div>
+          <div class="tip"></div>
+        </div>
+        <div class="mFourth" style="display: none">
+          <div class="fBoxes">
+            <div class="box left">
+              <div class="pai">
+                <span class="zhishu"></span>
+                :
+                <span class="dengji"></span>
+              </div>
+              <div class="pai">
+                <div class="tishi"></div>
+              </div>
+              <div class="pai iconfontBox">
+                <i class="iconfont" style="font-size: 50px;color: #5ac2ee;">&#xe7ac;</i>
+              </div>
+            </div>
+            <div class="box right">
+              <div class="pai">
+                <span class="zhishu"></span>
+                :
+                <span class="dengji"></span>
+              </div>
+              <div class="pai">
+                <div class="tishi"></div>
+              </div>
+              <div class="pai iconfontBox">
+                <i class="iconfont" style="font-size: 50px;color: #594bc8;">&#xe642;</i>
+              </div>
+            </div>
+            <div class="box left">
+              <div class="pai">
+                <span class="zhishu"></span>
+                :
+                <span class="dengji"></span>
+              </div>
+              <div class="pai">
+                <div class="tishi"></div>
+              </div>
+              <div class="pai iconfontBox">
+                <i class="iconfont" style="font-size: 50px;color: #ff6ad4;">&#xe660;</i>
+              </div>
+            </div>
+            <div class="box right">
+              <div class="pai">
+                <span class="zhishu"></span>
+                :
+                <span class="dengji"></span>
+              </div>
+              <div class="pai">
+                <div class="tishi"></div>
+              </div>
+              <div class="pai iconfontBox">
+                <i class="iconfont" style="font-size: 50px;color: #009fe8">&#xe672;</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="footer">
+          <div class="iconfont">&#xe629;</div>
+          未来天气
+        </div>
+        <div class="footer">
+          <div class="iconfont">&#xe60f;</div>
+          今日天气
+        </div>
+        <div class="footer">
+          <div class="iconfont">&#xea73;</div>
+          生活指数
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./JS/app.js"></script>
+</html>
