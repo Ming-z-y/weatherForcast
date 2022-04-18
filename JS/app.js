@@ -19,6 +19,14 @@ function $(str) {
         return name2
     }
 }
+function changeView(F, S, T, Fo, B) {
+    $('.mFirst')[0].style.display = F;
+    $('.mSecond')[0].style.display = S;
+    $(".mThird")[0].style.display = T;
+    $('.mFourth')[0].style.display = Fo;
+    $('.back')[0].style.display = B;
+}
+
 function ridColor() {
     for (let i = 0; i < $('.footer').length; i++) {
         $('.footer')[i].className = 'footer'
@@ -28,20 +36,14 @@ function ridColor() {
 async function getData(url) {
     const res = await fetch(url);
     const json = await res.json();
-    $('.back')[0].style.display = 'block'
     $('.footer')[1].className = 'footer on'
-    $('.mFirst')[0].style.display = 'none';
-    $('.mThird')[0].style.display = 'block'
+    changeView('none', 'none', 'block', 'none', 'block')
     $('.temperature')[0].textContent = json.tem + '°C';
     $('.cloud')[0].textContent = json.wea;
     $('.wind')[0].textContent = json.win;
     $('.back')[0].addEventListener('click', () => {
         ridColor()
-        $('.mFirst')[0].style.display = 'block';
-        $(".mThird")[0].style.display = 'none'
-        $('.mSecond')[0].style.display = 'none'
-        $('.mFourth')[0].style.display = 'none';
-        $('.back')[0].style.display = 'none'
+        changeView('block', 'none', 'none', 'none', 'none')
         $('input').value = '';
     })
 }
@@ -76,8 +78,15 @@ async function getLocationId(url) {
 searchIcon.addEventListener('click', () => {
     if ($('input').value != '') {
         if (cityArr.indexOf($('input').value) == -1) {
-            cityArr.push($('.history')[0]);
-            $('.history')[0].innerHTML += `<li class='hisLi'>${$('input').value}</li>`
+            cityArr.push($('input').value);
+            cityArr.arrReverse();
+            let liMoBan = ``
+            for (let i = 0; i < cityArr.length; i++) {
+                liMoBan += `<li class='hisLi'><span class="citySpans">${cityArr[i]}</span>
+                <i class="iCha">×</i>
+                </li>`
+            }
+            $('.history')[0].innerHTML = liMoBan;
         }
         cityName = $('input').value;
         getData(`${Url_1}${cityName}`);
@@ -86,26 +95,18 @@ searchIcon.addEventListener('click', () => {
         getWeekData(`${Url_2}${cityName}`)
         getLocationId(`${Url_4}${cityName}`)
         $('.footer')[0].addEventListener('click', () => {
-            $('.mFirst')[0].style.display = 'none';
-            $('.mThird')[0].style.display = 'none';
-            $('.mSecond')[0].style.display = 'block';
-            $('.mFourth')[0].style.display = 'none';
+            changeView('none', 'block', 'none', 'none', 'block')
             ridColor();
             $('.footer')[0].className = 'footer on'
         })
         $('.footer')[2].addEventListener('click', () => {
-            $('.mFirst')[0].style.display = 'none';
-            $('.mThird')[0].style.display = 'none';
-            $('.mSecond')[0].style.display = 'none';
-            $('.mFourth')[0].style.display = 'block';
+            changeView('none', 'none', 'none', 'block', 'block')
+            console.log('hello');
             ridColor();
             $('.footer')[2].className = 'footer on'
         })
         $('.footer')[1].addEventListener('click', () => {
-            $('.mFirst')[0].style.display = 'none';
-            $('.mThird')[0].style.display = 'block';
-            $('.mSecond')[0].style.display = 'none';
-            $('.mFourth')[0].style.display = 'none';
+            changeView('none', 'none', 'block', 'none', 'block')
             ridColor();
             $('.footer')[1].className = 'footer on';
         })
@@ -116,11 +117,18 @@ $('input').addEventListener('focus', () => {
         $('.searchHistoryBox')[0].style.display = 'block'
         for (let info of $('.hisLi')) {
             info.addEventListener('click', function () {
-                let cityname = this.innerHTML;
+                let cityname = this.firstElementChild.innerHTML;
                 getData(`${Url_1}${cityname}`);
                 getLocationId(`${Url_4}${cityname}`)
                 getWeekData(`${Url_2}${cityname}`)
                 getLocationId(`${Url_4}${cityname}`)
+            })
+        }
+        for (let icha of $('.iCha')) {
+            icha.addEventListener('click', function (even) {
+                even.stopPropagation();
+                this.parentNode.parentNode.removeChild(this.parentNode);
+                delArrItem(cityArr, `${this.parentNode.firstElementChild.textContent}`);
             })
         }
     }
